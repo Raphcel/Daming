@@ -1,0 +1,241 @@
+Area,scenario,predicted_year,predicted_temperature_change
+Brunei Darussalam,baseline,2023,1.0785996493805685
+Brunei Darussalam,baseline,2024,1.0789620552929198
+Brunei Darussalam,baseline,2025,1.0766876984670004
+Brunei Darussalam,baseline,2026,1.074413341641081
+Brunei Darussalam,baseline,2027,1.060645289535809
+Brunei Darussalam,baseline,2028,1.070479884150012
+Brunei Darussalam,baseline,2029,1.0582891484241335
+Brunei Darussalam,baseline,2030,1.052599064651791
+Cambodia,baseline,2023,1.0158633375421289
+Cambodia,baseline,2024,0.9970420447678504
+Cambodia,baseline,2025,1.0279844842921062
+Cambodia,baseline,2026,1.0602937435640016
+Cambodia,baseline,2027,1.0649559697181628
+Cambodia,baseline,2028,0.9709560350893731
+Cambodia,baseline,2029,0.9459199335416977
+Cambodia,baseline,2030,0.9296987458644276
+Indonesia,baseline,2023,1.0613145340206238
+Indonesia,baseline,2024,1.1561217013196898
+Indonesia,baseline,2025,1.1819449286012003
+Indonesia,baseline,2026,1.1866051440152314
+Indonesia,baseline,2027,1.1908839586975413
+Indonesia,baseline,2028,1.1920084771908483
+Indonesia,baseline,2029,1.2191680495874335
+Indonesia,baseline,2030,1.259653721122123
+Lao People's Democratic Republic,baseline,2023,0.9412901421170742
+Lao People's Democratic Republic,baseline,2024,0.9213257605595104
+Lao People's Democratic Republic,baseline,2025,0.925707453916148
+Lao People's Democratic Republic,baseline,2026,0.9300891472727855
+Lao People's Democratic Republic,baseline,2027,0.904407798686347
+Lao People's Democratic Republic,baseline,2028,0.9598120952655548
+Lao People's Democratic Republic,baseline,2029,0.931232375633796
+Lao People's Democratic Republic,baseline,2030,0.9287121588269687
+Malaysia,baseline,2023,1.1636871330020984
+Malaysia,baseline,2024,1.197977998856221
+Malaysia,baseline,2025,1.225639620780849
+Malaysia,baseline,2026,1.2804651408389538
+Malaysia,baseline,2027,1.318656290994311
+Malaysia,baseline,2028,1.3022301934599756
+Malaysia,baseline,2029,1.265875784455304
+Malaysia,baseline,2030,1.2865282109526326
+Myanmar,baseline,2023,1.1920910737170982
+Myanmar,baseline,2024,1.0769849670132396
+Myanmar,baseline,2025,0.9794072257439395
+Myanmar,baseline,2026,0.9998528381446126
+Myanmar,baseline,2027,0.9714684209543442
+Myanmar,baseline,2028,0.9866517932100068
+Myanmar,baseline,2029,0.9861826186595744
+Myanmar,baseline,2030,1.0025438994531766
+Philippines,baseline,2023,1.079281034544287
+Philippines,baseline,2024,1.065087369771925
+Philippines,baseline,2025,1.0439521183939606
+Philippines,baseline,2026,1.0684588686680723
+Philippines,baseline,2027,1.064310282382594
+Philippines,baseline,2028,1.0635860653704359
+Philippines,baseline,2029,1.0704211289723207
+Philippines,baseline,2030,1.0528013399469025
+Singapore,baseline,2023,1.045664660188802
+Singapore,baseline,2024,1.0893789591715244
+Singapore,baseline,2025,1.10382444872503
+Singapore,baseline,2026,1.095008672791202
+Singapore,baseline,2027,1.1086012528971378
+Singapore,baseline,2028,1.1034196319356457
+Singapore,baseline,2029,1.0982380109741536
+Singapore,baseline,2030,1.1166577721688995
+Thailand,baseline,2023,1.0438972144250542
+Thailand,baseline,2024,1.1147152104693132
+Thailand,baseline,2025,1.138100682208188
+Thailand,baseline,2026,1.18325816322671
+Thailand,baseline,2027,1.2151200673182272
+Thailand,baseline,2028,1.1808815307317138
+Thailand,baseline,2029,1.1392718986838912
+Thailand,baseline,2030,1.10575206622619
+Viet Nam,baseline,2023,1.1101558035686794
+Viet Nam,baseline,2024,1.1378579112473357
+Viet Nam,baseline,2025,1.1341840182878862
+Viet Nam,baseline,2026,1.1201720899971137
+Viet Nam,baseline,2027,1.1815955663603739
+Viet Nam,baseline,2028,1.2315595875770424
+Viet Nam,baseline,2029,1.2835334766432598
+Viet Nam,baseline,2030,1.300723758791314
+Brunei Darussalam,high_conversion_high_emission,2023,1.1327146483484931
+Brunei Darussalam,high_conversion_high_emission,2024,1.1670944666748981
+Brunei Darussalam,high_conversion_high_emission,2025,1.2214895788151834
+Brunei Darussalam,high_conversion_high_emission,2026,1.2988209999689637
+Brunei Darussalam,high_conversion_high_emission,2027,1.348899543686216
+Brunei Darussalam,high_conversion_high_emission,2028,1.4047351024644188
+Brunei Darussalam,high_conversion_high_emission,2029,1.388843130263587
+Brunei Darussalam,high_conversion_high_emission,2030,1.5146409278018378
+Cambodia,high_conversion_high_emission,2023,1.0331936158279456
+Cambodia,high_conversion_high_emission,2024,1.0858153545335887
+Cambodia,high_conversion_high_emission,2025,1.1171512757227624
+Cambodia,high_conversion_high_emission,2026,1.0566138686461475
+Cambodia,high_conversion_high_emission,2027,1.1062837481481815
+Cambodia,high_conversion_high_emission,2028,1.1374655523880268
+Cambodia,high_conversion_high_emission,2029,1.173202991880784
+Cambodia,high_conversion_high_emission,2030,1.2500932513417748
+Indonesia,high_conversion_high_emission,2023,1.0465833614438866
+Indonesia,high_conversion_high_emission,2024,1.1370476348962608
+Indonesia,high_conversion_high_emission,2025,1.2053375300958422
+Indonesia,high_conversion_high_emission,2026,1.2613812455985995
+Indonesia,high_conversion_high_emission,2027,1.315766690588716
+Indonesia,high_conversion_high_emission,2028,1.2744453593017262
+Indonesia,high_conversion_high_emission,2029,1.3072528208563536
+Indonesia,high_conversion_high_emission,2030,1.3156749450834975
+Lao People's Democratic Republic,high_conversion_high_emission,2023,0.987346312373909
+Lao People's Democratic Republic,high_conversion_high_emission,2024,1.0084996471003775
+Lao People's Democratic Republic,high_conversion_high_emission,2025,1.0423873055423771
+Lao People's Democratic Republic,high_conversion_high_emission,2026,1.065825360407515
+Lao People's Democratic Republic,high_conversion_high_emission,2027,1.0930177617972232
+Lao People's Democratic Republic,high_conversion_high_emission,2028,1.142094642143164
+Lao People's Democratic Republic,high_conversion_high_emission,2029,1.1794459550058223
+Lao People's Democratic Republic,high_conversion_high_emission,2030,1.2510777843918597
+Malaysia,high_conversion_high_emission,2023,1.1696948269493075
+Malaysia,high_conversion_high_emission,2024,1.2752408809281972
+Malaysia,high_conversion_high_emission,2025,1.4512252115312403
+Malaysia,high_conversion_high_emission,2026,1.4720642529767667
+Malaysia,high_conversion_high_emission,2027,1.5142230379082338
+Malaysia,high_conversion_high_emission,2028,1.562181247149947
+Malaysia,high_conversion_high_emission,2029,1.4935362098630571
+Malaysia,high_conversion_high_emission,2030,1.5019191360617794
+Myanmar,high_conversion_high_emission,2023,1.21557236249894
+Myanmar,high_conversion_high_emission,2024,1.2000065824449717
+Myanmar,high_conversion_high_emission,2025,1.2222890805607103
+Myanmar,high_conversion_high_emission,2026,1.269571578676449
+Myanmar,high_conversion_high_emission,2027,1.317228820816935
+Myanmar,high_conversion_high_emission,2028,1.3305472286344613
+Myanmar,high_conversion_high_emission,2029,1.3722448942306205
+Myanmar,high_conversion_high_emission,2030,1.4389425598267795
+Philippines,high_conversion_high_emission,2023,1.1029703836893883
+Philippines,high_conversion_high_emission,2024,1.1377811630430732
+Philippines,high_conversion_high_emission,2025,1.1530117329046246
+Philippines,high_conversion_high_emission,2026,1.2040429865917162
+Philippines,high_conversion_high_emission,2027,1.270459597689638
+Philippines,high_conversion_high_emission,2028,1.3409696783208638
+Philippines,high_conversion_high_emission,2029,1.3887688598747292
+Philippines,high_conversion_high_emission,2030,1.4676795096629167
+Singapore,high_conversion_high_emission,2023,1.0490701465060956
+Singapore,high_conversion_high_emission,2024,1.1121693797100745
+Singapore,high_conversion_high_emission,2025,1.158702104643963
+Singapore,high_conversion_high_emission,2026,1.2075359942156
+Singapore,high_conversion_high_emission,2027,1.2566293350603246
+Singapore,high_conversion_high_emission,2028,1.320087092764731
+Singapore,high_conversion_high_emission,2029,1.4109667048321228
+Singapore,high_conversion_high_emission,2030,1.4240954067361595
+Thailand,high_conversion_high_emission,2023,1.059349293828743
+Thailand,high_conversion_high_emission,2024,1.1749200482907936
+Thailand,high_conversion_high_emission,2025,1.28799274943548
+Thailand,high_conversion_high_emission,2026,1.3554799883904107
+Thailand,high_conversion_high_emission,2027,1.3494785255016175
+Thailand,high_conversion_high_emission,2028,1.3609629698351453
+Thailand,high_conversion_high_emission,2029,1.3847542810961444
+Thailand,high_conversion_high_emission,2030,1.4136186658279175
+Viet Nam,high_conversion_high_emission,2023,1.1332758892427734
+Viet Nam,high_conversion_high_emission,2024,1.1880857120346
+Viet Nam,high_conversion_high_emission,2025,1.2613993977605886
+Viet Nam,high_conversion_high_emission,2026,1.339229469688006
+Viet Nam,high_conversion_high_emission,2027,1.3891633676383641
+Viet Nam,high_conversion_high_emission,2028,1.4227052132844262
+Viet Nam,high_conversion_high_emission,2029,1.3757436368247218
+Viet Nam,high_conversion_high_emission,2030,1.4711520726484029
+Brunei Darussalam,mitigation_conservation,2023,1.0636823936302393
+Brunei Darussalam,mitigation_conservation,2024,1.0298507626289835
+Brunei Darussalam,mitigation_conservation,2025,1.0107958859883597
+Brunei Darussalam,mitigation_conservation,2026,0.971741009347736
+Brunei Darussalam,mitigation_conservation,2027,0.9369002089165283
+Brunei Darussalam,mitigation_conservation,2028,0.9055128030812362
+Brunei Darussalam,mitigation_conservation,2029,0.9028203683249033
+Brunei Darussalam,mitigation_conservation,2030,0.8936594403205157
+Cambodia,mitigation_conservation,2023,0.9998363867380811
+Cambodia,mitigation_conservation,2024,0.9505086533145237
+Cambodia,mitigation_conservation,2025,0.9133925187586209
+Cambodia,mitigation_conservation,2026,0.9600568878211456
+Cambodia,mitigation_conservation,2027,0.935544368485926
+Cambodia,mitigation_conservation,2028,0.9144852437466219
+Cambodia,mitigation_conservation,2029,0.9790246335820322
+Cambodia,mitigation_conservation,2030,0.9630347885180118
+Indonesia,mitigation_conservation,2023,1.0369404348417564
+Indonesia,mitigation_conservation,2024,1.0601568781785895
+Indonesia,mitigation_conservation,2025,1.0438364056773985
+Indonesia,mitigation_conservation,2026,1.0270528490142317
+Indonesia,mitigation_conservation,2027,0.9993501401750314
+Indonesia,mitigation_conservation,2028,0.9387790401525115
+Indonesia,mitigation_conservation,2029,0.9053853262308303
+Indonesia,mitigation_conservation,2030,0.9006865833881083
+Lao People's Democratic Republic,mitigation_conservation,2023,0.9322884172890005
+Lao People's Democratic Republic,mitigation_conservation,2024,0.8755519360793805
+Lao People's Democratic Republic,mitigation_conservation,2025,0.8629269424021659
+Lao People's Democratic Republic,mitigation_conservation,2026,0.9085810404000251
+Lao People's Democratic Republic,mitigation_conservation,2027,0.879267626695651
+Lao People's Democratic Republic,mitigation_conservation,2028,0.8609017384802603
+Lao People's Democratic Republic,mitigation_conservation,2029,0.8682916695475006
+Lao People's Democratic Republic,mitigation_conservation,2030,0.8305528025707243
+Malaysia,mitigation_conservation,2023,1.1436871330020983
+Malaysia,mitigation_conservation,2024,1.0966938411408953
+Malaysia,mitigation_conservation,2025,1.074799666599277
+Malaysia,mitigation_conservation,2026,1.05107778927815
+Malaysia,mitigation_conservation,2027,1.040095480443676
+Malaysia,mitigation_conservation,2028,1.0065497718004601
+Malaysia,mitigation_conservation,2029,0.9530040631572444
+Malaysia,mitigation_conservation,2030,0.8865878932964796
+Myanmar,mitigation_conservation,2023,1.1757516748929648
+Myanmar,mitigation_conservation,2024,1.033281822845786
+Myanmar,mitigation_conservation,2025,0.9915413786397984
+Myanmar,mitigation_conservation,2026,0.9577161770736468
+Myanmar,mitigation_conservation,2027,0.9195435223135903
+Myanmar,mitigation_conservation,2028,0.9335192332284085
+Myanmar,mitigation_conservation,2029,0.8787999730642674
+Myanmar,mitigation_conservation,2030,0.871174221627787
+Philippines,mitigation_conservation,2023,1.046074301771532
+Philippines,mitigation_conservation,2024,1.0476895166548117
+Philippines,mitigation_conservation,2025,1.0370217301123694
+Philippines,mitigation_conservation,2026,1.0123831029911432
+Philippines,mitigation_conservation,2027,0.9677444758699171
+Philippines,mitigation_conservation,2028,0.9361865868207916
+Philippines,mitigation_conservation,2029,0.9101354132822738
+Philippines,mitigation_conservation,2030,0.9127792108227152
+Singapore,mitigation_conservation,2023,1.025664660188802
+Singapore,mitigation_conservation,2024,1.0354081185927404
+Singapore,mitigation_conservation,2025,1.0251515769966788
+Singapore,mitigation_conservation,2026,0.9953511734437784
+Singapore,mitigation_conservation,2027,0.9534166668345446
+Singapore,mitigation_conservation,2028,0.9226542017432716
+Singapore,mitigation_conservation,2029,0.9210441075352499
+Singapore,mitigation_conservation,2030,0.8994340133272282
+Thailand,mitigation_conservation,2023,1.022934631655623
+Thailand,mitigation_conservation,2024,1.051174671071983
+Thailand,mitigation_conservation,2025,1.0745580891768527
+Thailand,mitigation_conservation,2026,1.0215802608808664
+Thailand,mitigation_conservation,2027,1.0294362430422632
+Thailand,mitigation_conservation,2028,1.0081585575537826
+Thailand,mitigation_conservation,2029,0.9958752431714012
+Thailand,mitigation_conservation,2030,0.9796037852775182
+Viet Nam,mitigation_conservation,2023,1.0939834547504605
+Viet Nam,mitigation_conservation,2024,1.0794028981796013
+Viet Nam,mitigation_conservation,2025,1.036086319175794
+Viet Nam,mitigation_conservation,2026,1.0391731568869729
+Viet Nam,mitigation_conservation,2027,1.0163572420832856
+Viet Nam,mitigation_conservation,2028,0.9735413272795984
+Viet Nam,mitigation_conservation,2029,0.9364924669076692
+Viet Nam,mitigation_conservation,2030,0.9028970011316556

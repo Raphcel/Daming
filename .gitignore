@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+~$*.docx
+/Format Laporan Akhir Tugas Akhir Data Mining Genap 2025-2026.docx
+/Laporan_Akhir_Data_Mining_ASEAN_Climate_LandCover.docx

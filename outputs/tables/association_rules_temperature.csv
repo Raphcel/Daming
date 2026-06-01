@@ -1,0 +1,11 @@
+antecedents,consequents,support,confidence,lift
+"D_Lahan_Pertanian=Stabil, D_LULUCF=Stabil, D_Forest fires=Stabil, D_Energy=Stabil","D_Hutan=Stabil, D_AFOLU=Stabil, D_Urban=Stabil, Suhu=Rendah, D_Deforestasi=Stabil",0.1607,0.2416,1.3214
+"D_AFOLU=Stabil, D_Lahan_Pertanian=Stabil, D_Forest fires=Stabil, D_Energy=Stabil","D_Hutan=Stabil, D_Urban=Stabil, Suhu=Rendah, D_Deforestasi=Stabil, D_LULUCF=Stabil",0.1607,0.2425,1.3212
+"D_AFOLU=Stabil, D_Lahan_Pertanian=Stabil, D_Deforestasi=Stabil, D_Energy=Stabil","D_Forest fires=Stabil, D_Hutan=Stabil, D_Urban=Stabil, Suhu=Rendah, D_LULUCF=Stabil",0.1607,0.2327,1.3209
+"D_AFOLU=Stabil, D_Lahan_Pertanian=Stabil, D_Forest fires=Stabil, D_Energy=Stabil","Suhu=Rendah, D_Urban=Stabil, D_Hutan=Stabil, D_LULUCF=Stabil",0.1609,0.2429,1.3206
+"D_AFOLU=Stabil, D_Lahan_Pertanian=Stabil, D_Energy=Stabil","D_Forest fires=Stabil, D_Hutan=Stabil, D_Urban=Stabil, Suhu=Rendah, D_LULUCF=Stabil",0.1609,0.2327,1.3206
+"D_Lahan_Pertanian=Stabil, D_Forest fires=Stabil, D_Energy=Stabil, D_AFOLU=Stabil, D_Deforestasi=Stabil","Suhu=Rendah, D_Urban=Stabil, D_Hutan=Stabil, D_LULUCF=Stabil",0.1607,0.2429,1.3205
+"D_AFOLU=Stabil, D_Lahan_Pertanian=Stabil, D_Energy=Stabil","D_Forest fires=Stabil, D_Hutan=Stabil, D_Urban=Stabil, Suhu=Rendah, D_Deforestasi=Stabil, D_LULUCF=Stabil",0.1607,0.2323,1.3204
+"D_Lahan_Pertanian=Stabil, D_Forest fires=Stabil, D_Energy=Stabil, D_Deforestasi=Stabil, D_LULUCF=Stabil","D_AFOLU=Stabil, Suhu=Rendah, D_Urban=Stabil, D_Hutan=Stabil",0.1607,0.242,1.32
+"D_Lahan_Pertanian=Stabil, D_LULUCF=Stabil, D_Forest fires=Stabil, D_Energy=Stabil","D_AFOLU=Stabil, Suhu=Rendah, D_Urban=Stabil, D_Hutan=Stabil",0.1609,0.242,1.3199
+"D_Forest fires=Stabil, D_Hutan=Stabil, D_AFOLU=Stabil, D_Urban=Stabil, D_Deforestasi=Stabil","Suhu=Kritis, D_Lahan_Pertanian=Stabil, D_LULUCF=Stabil, D_Energy=Stabil",0.0827,0.1158,1.3183

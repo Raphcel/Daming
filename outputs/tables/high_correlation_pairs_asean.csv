@@ -1,0 +1,9 @@
+feature_a,feature_b,abs_correlation
+Tree-covered areas,Artificial surfaces (including urban and associated areas),0.928
+Tree-covered areas,Agrifood systems,0.879
+Artificial surfaces (including urban and associated areas),Energy,0.934
+AFOLU,LULUCF,0.992
+AFOLU,Net Forest conversion,0.887
+AFOLU,Agrifood systems,0.972
+LULUCF,Net Forest conversion,0.906
+LULUCF,Agrifood systems,0.944

@@ -1,0 +1,44 @@
+feature,importance
+Temperature_Change,0.07403689641405196
+Mangroves,0.010416753497203226
+pct_change_Agrifood systems,0.009395920999206555
+delta_Agrifood systems,0.008268590688114216
+Tree-covered areas,0.0055384068158681535
+Inland water bodies,0.0055197655989089505
+pct_change_AFOLU,0.00501146567382519
+Drained organic soils,0.004154894173644525
+Fires in humid tropical forests,0.003954162324039609
+Forestland,0.0024470128266366417
+Land-use change,0.0017696694333856136
+Savanna fires,0.0014805369210294922
+log1p_Forest fires,0.0013333650939421117
+Terrestrial barren land,0.0012955693015209528
+"Shrubs and/or herbaceous vegetation, aquatic or regularly flooded",0.001264275536867134
+Shrub-covered areas,0.0010896697738740611
+pct_change_Net Forest conversion,0.000741374017004616
+pct_change_Herbaceous crops,0.00048748492357964895
+Permanent snow and glaciers,0.00029864204286086937
+delta_Forest fires,0.00011800526326782394
+pct_change_Tree-covered areas,4.561080058438846e-05
+log1p_Fires in humid tropical forests,0.0
+Year,0.0
+Area,0.0
+Fires in organic soils,0.0
+log1p_Fires in organic soils,0.0
+pct_change_Artificial surfaces (including urban and associated areas),-0.00012525136919873275
+log1p_Net Forest conversion,-0.00017974995415540157
+delta_AFOLU,-0.0005610475192881723
+Artificial surfaces (including urban and associated areas),-0.0005834143377772908
+delta_Artificial surfaces (including urban and associated areas),-0.0006795300566281304
+LULUCF,-0.0007139415127355858
+Grassland,-0.0007341282612894339
+pct_change_Energy,-0.000884692704841363
+delta_Tree-covered areas,-0.0011470021698473571
+Drained organic soils (N2O),-0.001157202804488858
+AFOLU,-0.0012610510741258296
+delta_Energy,-0.0013039369285635257
+delta_Herbaceous crops,-0.001351951337052508
+Sparsely natural vegetated areas,-0.0017458476886339132
+pct_change_LULUCF,-0.0037530018696658647
+delta_Net Forest conversion,-0.004048300510501885
+pct_change_Forest fires,-0.004619351534624112

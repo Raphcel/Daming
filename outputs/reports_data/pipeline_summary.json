@@ -1,0 +1,63 @@
+{
+  "panel_rows": 8128,
+  "panel_columns": 59,
+  "supervised_rows": 7859,
+  "asean_supervised_rows": 300,
+  "output_directory": "outputs",
+  "target_definition": "target_next_year = target_level_next_year - Temperature_Change",
+  "best_model": "HistGradientBoosting",
+  "scenario_model": "HistGradientBoosting",
+  "deep_learning_tuning_experiments": 288,
+  "best_deep_learning_config": {
+    "model_type": "LSTM",
+    "sequence_window": 3,
+    "hidden_dim": 24,
+    "learning_rate": 0.003,
+    "dropout": 0.05,
+    "num_layers": 2,
+    "weight_decay": 0.001,
+    "random_seed": 214,
+    "asean_validation_mae": 0.1926378126998742,
+    "asean_test_mae": 0.2220575190037489
+  },
+  "best_gru_config": {
+    "sequence_window": 3,
+    "hidden_dim": 16,
+    "learning_rate": 0.001,
+    "dropout": 0.15,
+    "num_layers": 2,
+    "weight_decay": 0.0001,
+    "random_seed": 49,
+    "asean_validation_mae": 0.20913042689959208,
+    "asean_test_mae": 0.19218676691055298
+  },
+  "best_lstm_config": {
+    "sequence_window": 3,
+    "hidden_dim": 24,
+    "learning_rate": 0.003,
+    "dropout": 0.05,
+    "num_layers": 2,
+    "weight_decay": 0.001,
+    "random_seed": 214,
+    "asean_validation_mae": 0.1926378126998742,
+    "asean_test_mae": 0.2220575190037489
+  },
+  "best_asean_test_mae": 0.12686524380137193,
+  "best_asean_test_rmse": 0.1552300211690186,
+  "asean_test_samples": 20,
+  "techniques_completed": [
+    "a. Clustering (K-Means, DBSCAN)",
+    "b. Klasifikasi (RF, HistGBT Classifier)",
+    "c. Deep Learning (LSTM, GRU)",
+    "d. Association Rule Mining (Apriori)",
+    "e. Time Series Mining (ADF, decomposition, forecasting)"
+  ],
+  "report_notes": [
+    "Models predict year-over-year temperature delta; level metrics are reconstructed from current-year temperature plus predicted delta.",
+    "ASEAN test sample size is small, so country-level conclusions should be treated as indicative rather than definitive.",
+    "Global training data improves sample size but may introduce regional bias when evaluated on ASEAN countries.",
+    "Scenario forecasts are illustrative stress tests using explicit assumptions, not calibrated climate projections.",
+    "Annual data limits true seasonal interpretation; decomposition is used as trend/cycle analysis.",
+    "Singapore is excluded from supervised target evaluation because Temperature_Change is missing in the source data."
+  ]
+}

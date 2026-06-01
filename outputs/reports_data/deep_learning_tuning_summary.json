@@ -1,0 +1,40 @@
+{
+  "selection_rule": "lowest ASEAN validation reconstructed-level MAE; global validation MAE is tie-breaker",
+  "n_experiments": 288,
+  "best_by_type": {
+    "GRU": {
+      "sequence_window": 3,
+      "hidden_dim": 16,
+      "learning_rate": 0.001,
+      "dropout": 0.15,
+      "num_layers": 2,
+      "weight_decay": 0.0001,
+      "random_seed": 49,
+      "asean_validation_mae": 0.20913042689959208,
+      "asean_test_mae": 0.19218676691055298
+    },
+    "LSTM": {
+      "sequence_window": 3,
+      "hidden_dim": 24,
+      "learning_rate": 0.003,
+      "dropout": 0.05,
+      "num_layers": 2,
+      "weight_decay": 0.001,
+      "random_seed": 214,
+      "asean_validation_mae": 0.1926378126998742,
+      "asean_test_mae": 0.2220575190037489
+    }
+  },
+  "best_overall": {
+    "model_type": "LSTM",
+    "sequence_window": 3,
+    "hidden_dim": 24,
+    "learning_rate": 0.003,
+    "dropout": 0.05,
+    "num_layers": 2,
+    "weight_decay": 0.001,
+    "random_seed": 214,
+    "asean_validation_mae": 0.1926378126998742,
+    "asean_test_mae": 0.2220575190037489
+  }
+}

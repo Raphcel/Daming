@@ -46,11 +46,9 @@
   "best_asean_test_rmse": 0.1552300211690186,
   "asean_test_samples": 20,
   "techniques_completed": [
-    "a. Clustering (K-Means, DBSCAN)",
-    "b. Klasifikasi (RF, HistGBT Classifier)",
-    "c. Deep Learning (LSTM, GRU)",
-    "d. Association Rule Mining (Apriori)",
-    "e. Time Series Mining (ADF, decomposition, forecasting)"
+    "Time Series Mining (ADF, decomposition, ACF/PACF, temporal split, scenario forecasting)",
+    "Deep Learning (LSTM, GRU)",
+    "Baseline and tabular model comparison (Naive, Mean, Ridge, Random Forest, HistGradientBoosting)"
   ],
   "report_notes": [
     "Models predict year-over-year temperature delta; level metrics are reconstructed from current-year temperature plus predicted delta.",
@@ -59,5 +57,6 @@
     "Scenario forecasts are illustrative stress tests using explicit assumptions, not calibrated climate projections.",
     "Annual data limits true seasonal interpretation; decomposition is used as trend/cycle analysis.",
     "Singapore is excluded from supervised target evaluation because Temperature_Change is missing in the source data."
-  ]
+  ],
+  "focus": "Deep learning and time series data mining for ASEAN temperature anomaly prediction"
 }

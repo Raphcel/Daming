@@ -1,16 +1,16 @@
 """
 ===============================================================================
-ASEAN Temperature Anomaly Prediction - Comprehensive Data Mining Pipeline
+ASEAN Temperature Anomaly Prediction - Focused Time Series & Deep Learning Pipeline
 ===============================================================================
 Topik: Implementasi teknik data mining untuk analisis data climate change
        dan perubahan tutupan lahan
 
-Teknik Data Mining yang diimplementasikan:
-  a. Clustering & Deteksi Anomali (K-Means, DBSCAN)
-  b. Klasifikasi (Random Forest, HistGradientBoosting Classifier)
-  c. Deep Learning (LSTM, GRU - PyTorch)
-  d. Association Rule Mining (Apriori)
-  e. Time Series Data Mining (ADF, decomposition, supervised forecasting)
+Fokus utama:
+  a. Time Series Data Mining (ADF, decomposition, ACF/PACF, supervised forecasting)
+  b. Deep Learning (LSTM, GRU - PyTorch)
+
+Model pembanding:
+  Baseline, Ridge, Random Forest Regressor, HistGradientBoosting Regressor
 
 Dataset: FAOSTAT (FAO) - Temperature Change, Land Cover, Emissions
 ===============================================================================
@@ -31,26 +31,19 @@ import pandas as pd
 import seaborn as sns
 import torch
 from scipy import stats
-from sklearn.cluster import DBSCAN, KMeans
 from sklearn.compose import ColumnTransformer
 from sklearn.dummy import DummyRegressor
 from sklearn.ensemble import (
-    HistGradientBoostingClassifier,
     HistGradientBoostingRegressor,
-    RandomForestClassifier,
     RandomForestRegressor,
 )
 from sklearn.impute import SimpleImputer
 from sklearn.inspection import permutation_importance
 from sklearn.linear_model import Ridge
 from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
     mean_absolute_error,
     mean_squared_error,
     r2_score,
-    silhouette_score,
 )
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -465,7 +458,7 @@ def preprocess_panel(panel: pd.DataFrame, config: ModelingConfig) -> pd.DataFram
     print(f"  Temperature_Change didiskretisasi ke: {TEMP_LABELS}")
     print(f"  Distribusi: {df['Temp_Category'].value_counts().to_dict()}")
 
-    # Discretize emission changes for association rules
+    # Discretize feature changes for descriptive risk summaries if needed.
     for col in ["delta_AFOLU", "delta_Energy", "delta_LULUCF",
                  "delta_Net Forest conversion", "delta_Forest fires"]:
         if col in df.columns:
@@ -542,7 +535,7 @@ def make_supervised(panel: pd.DataFrame, config: ModelingConfig) -> pd.DataFrame
         default="test",
     )
 
-    # Discretize target for classification
+    # Discretize target level for risk-category interpretation.
     df["target_category"] = pd.cut(
         df["target_level_next_year"], bins=TEMP_BINS, labels=TEMP_LABELS,
     )
@@ -590,219 +583,6 @@ def make_preprocessor(numeric, categorical):
         ]), numeric),
         ("cat", encoder, categorical),
     ])
-
-
-# =============================================================================
-# SECTION 5a: CLUSTERING & ANOMALY DETECTION
-# =============================================================================
-
-def run_clustering(panel: pd.DataFrame, output_dir: Path, config: ModelingConfig) -> dict:
-    """K-Means & DBSCAN clustering on country emission-land-cover profiles."""
-    print("\n" + "=" * 70)
-    print("TEKNIK (a): CLUSTERING & DETEKSI ANOMALI")
-    print("=" * 70)
-    results = {}
-
-    # Aggregate country profiles (mean across years)
-    profile_cols = [
-        "Temperature_Change", "Tree-covered areas", "Herbaceous crops",
-        "Artificial surfaces (including urban and associated areas)",
-        "AFOLU", "Energy", "LULUCF", "Agrifood systems",
-    ]
-    available = [c for c in profile_cols if c in panel.columns]
-    country_profiles = panel.groupby("Area")[available].mean().dropna()
-
-    # Standardize
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(country_profiles)
-
-    # --- K-Means with silhouette analysis ---
-    print("\n--- K-Means Clustering ---")
-    silhouette_scores = {}
-    for k in range(config.n_clusters_range[0], config.n_clusters_range[1]):
-        km = KMeans(n_clusters=k, random_state=config.random_seed, n_init=10)
-        labels = km.fit_predict(X_scaled)
-        score = silhouette_score(X_scaled, labels)
-        silhouette_scores[k] = round(score, 4)
-        print(f"  k={k}: Silhouette Score = {score:.4f}")
-
-    optimal_k = max(silhouette_scores, key=silhouette_scores.get)
-    print(f"  Optimal k = {optimal_k} (Silhouette = {silhouette_scores[optimal_k]})")
-
-    km_final = KMeans(n_clusters=optimal_k, random_state=config.random_seed, n_init=10)
-    country_profiles["cluster"] = km_final.fit_predict(X_scaled)
-
-    # Show ASEAN cluster assignments
-    asean_clusters = country_profiles.loc[
-        country_profiles.index.isin(ASEAN_MEMBERS), "cluster"
-    ]
-    if not asean_clusters.empty:
-        print(f"\n  Kluster negara ASEAN:")
-        for country, cluster in asean_clusters.items():
-            print(f"    {country}: Kluster {cluster}")
-
-    # Cluster summary
-    cluster_summary = country_profiles.groupby("cluster")[available].mean().round(2)
-    print(f"\n  Profil rata-rata per kluster:")
-    print(cluster_summary.to_string())
-    results["cluster_summary"] = cluster_summary
-    results["silhouette_scores"] = silhouette_scores
-    results["optimal_k"] = optimal_k
-
-    # PCA visualization
-    from sklearn.decomposition import PCA
-    pca = PCA(n_components=2)
-    X_pca = pca.fit_transform(X_scaled)
-
-    fig, ax = plt.subplots(figsize=(10, 7))
-    scatter = ax.scatter(
-        X_pca[:, 0], X_pca[:, 1],
-        c=country_profiles["cluster"], cmap="Set2",
-        s=50, alpha=0.7, edgecolors="black", linewidths=0.5,
-    )
-    # Label ASEAN countries
-    for i, country in enumerate(country_profiles.index):
-        if country in ASEAN_MEMBERS:
-            ax.annotate(
-                country, (X_pca[i, 0], X_pca[i, 1]),
-                fontsize=7, fontweight="bold", color="red",
-                xytext=(5, 5), textcoords="offset points",
-            )
-    ax.set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]:.1%} varians)")
-    ax.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]:.1%} varians)")
-    ax.set_title("K-Means Clustering Negara Berdasarkan Profil Emisi & Tutupan Lahan",
-                 fontweight="bold")
-    plt.colorbar(scatter, label="Kluster")
-    plt.tight_layout()
-    plt.savefig(artifact_path(output_dir, "clustering_pca.png"))
-    plt.close()
-
-    # Silhouette bar chart
-    fig, ax = plt.subplots(figsize=(7, 4))
-    ks = list(silhouette_scores.keys())
-    scores = list(silhouette_scores.values())
-    colors = ["#3b82f6" if k != optimal_k else "#ef4444" for k in ks]
-    ax.bar(ks, scores, color=colors)
-    ax.set_xlabel("Jumlah Kluster (k)")
-    ax.set_ylabel("Silhouette Score")
-    ax.set_title("Analisis Silhouette untuk Pemilihan k Optimal", fontweight="bold")
-    ax.set_xticks(ks)
-    plt.tight_layout()
-    plt.savefig(artifact_path(output_dir, "silhouette_analysis.png"))
-    plt.close()
-
-    # --- DBSCAN Anomaly Detection ---
-    print("\n--- DBSCAN Deteksi Anomali ---")
-    # Apply on yearly deltas for ASEAN
-    asean_data = panel[panel["Area"].isin(ASEAN_MEMBERS)].copy()
-    delta_cols = [c for c in asean_data.columns if c.startswith("delta_")][:6]
-    if delta_cols:
-        X_delta = asean_data[delta_cols].fillna(0).values
-        X_delta_scaled = StandardScaler().fit_transform(X_delta)
-
-        dbscan = DBSCAN(eps=2.0, min_samples=3)
-        asean_data["anomaly"] = dbscan.fit_predict(X_delta_scaled)
-        anomalies = asean_data[asean_data["anomaly"] == -1][["Area", "Year", "Temperature_Change"] + delta_cols[:3]]
-
-        n_anomalies = len(anomalies)
-        print(f"  Anomali terdeteksi: {n_anomalies} country-year")
-        if n_anomalies > 0:
-            print(anomalies.head(10).to_string(index=False))
-        results["anomalies"] = anomalies
-    else:
-        print("  Tidak ada kolom delta untuk DBSCAN.")
-
-    return results
-
-
-# =============================================================================
-# SECTION 5b: CLASSIFICATION
-# =============================================================================
-
-def run_classification(supervised: pd.DataFrame, config: ModelingConfig,
-                       output_dir: Path) -> dict:
-    """Classification on discretized temperature categories."""
-    print("\n" + "=" * 70)
-    print("TEKNIK (b): KLASIFIKASI")
-    print("=" * 70)
-    results = {}
-
-    # Prepare features
-    numeric, categorical = feature_columns(supervised, config)
-    features = numeric + categorical
-    target = "target_category"
-
-    # Drop rows with NaN target
-    df = supervised.dropna(subset=[target]).copy()
-    train = df[df["split"] == "train"]
-    test = df[df["split"] == "test"]
-    asean_test = df[(df["split"] == "test") & df["is_asean"]]
-
-    if len(train) < 10 or len(test) < 5:
-        print("  Data tidak cukup untuk klasifikasi.")
-        return results
-
-    X_train, y_train = train[features], train[target]
-    X_test, y_test = test[features], test[target]
-
-    preprocessor = make_preprocessor(numeric, categorical)
-
-    classifiers = {
-        "Random Forest Classifier": Pipeline([
-            ("preprocess", make_preprocessor(numeric, categorical)),
-            ("model", RandomForestClassifier(
-                n_estimators=300, min_samples_leaf=3,
-                random_state=config.random_seed, n_jobs=-1,
-            )),
-        ]),
-        "HistGradientBoosting Classifier": Pipeline([
-            ("preprocess", make_preprocessor(numeric, categorical)),
-            ("model", HistGradientBoostingClassifier(
-                random_state=config.random_seed, max_iter=200,
-                learning_rate=0.05,
-            )),
-        ]),
-    }
-
-    for name, clf in classifiers.items():
-        print(f"\n--- {name} ---")
-        clf.fit(X_train, y_train)
-
-        # Global test
-        y_pred = clf.predict(X_test)
-        acc = accuracy_score(y_test, y_pred)
-        print(f"  Akurasi (global test): {acc:.4f}")
-        print(f"  Classification Report:")
-        report = classification_report(y_test, y_pred, zero_division=0)
-        print(report)
-
-        # ASEAN test
-        if len(asean_test) > 0:
-            y_asean_pred = clf.predict(asean_test[features])
-            acc_asean = accuracy_score(asean_test[target], y_asean_pred)
-            print(f"  Akurasi (ASEAN test): {acc_asean:.4f}")
-
-        results[name] = {
-            "accuracy_global": acc,
-            "report": report,
-        }
-
-        # Confusion matrix plot
-        cm = confusion_matrix(y_test, y_pred, labels=TEMP_LABELS)
-        fig, ax = plt.subplots(figsize=(6, 5))
-        sns.heatmap(
-            cm, annot=True, fmt="d", cmap="Blues",
-            xticklabels=TEMP_LABELS, yticklabels=TEMP_LABELS, ax=ax,
-        )
-        ax.set_xlabel("Prediksi")
-        ax.set_ylabel("Aktual")
-        ax.set_title(f"Confusion Matrix - {name}", fontweight="bold")
-        plt.tight_layout()
-        safe_name = name.replace(" ", "_").lower()
-        plt.savefig(artifact_path(output_dir, f"confusion_matrix_{safe_name}.png"))
-        plt.close()
-
-    return results
 
 
 # =============================================================================
@@ -980,119 +760,6 @@ class TorchSequenceModel:
             yhat = self.model(torch.tensor(x_seq, dtype=torch.float32)).cpu().numpy()
         pred[idx_seq] = yhat
         return pred
-
-
-# =============================================================================
-# SECTION 5d: ASSOCIATION RULE MINING
-# =============================================================================
-
-def run_association_rules(panel: pd.DataFrame, output_dir: Path) -> dict:
-    """Apriori association rule mining on discretized features."""
-    print("\n" + "=" * 70)
-    print("TEKNIK (d): ASSOCIATION RULE MINING")
-    print("=" * 70)
-    results = {}
-
-    try:
-        from mlxtend.frequent_patterns import apriori, association_rules
-        from mlxtend.preprocessing import TransactionEncoder
-    except ImportError:
-        print("  mlxtend tidak tersedia. Lewati association rule mining.")
-        return results
-
-    # Build transaction dataset from discretized columns
-    cat_cols = [c for c in panel.columns if c.startswith("cat_")]
-    if "Temp_Category" in panel.columns:
-        cat_cols.append("Temp_Category")
-
-    if len(cat_cols) < 2:
-        print("  Kolom kategorikal tidak cukup untuk association rules.")
-        return results
-
-    # Create transactions: each row = set of "feature=value" items
-    df_cat = panel[cat_cols].dropna()
-    transactions = []
-    for _, row in df_cat.iterrows():
-        items = []
-        for col in cat_cols:
-            val = row[col]
-            if pd.notna(val):
-                # Shorten column name for readability
-                short_name = col.replace("cat_delta_", "D_").replace("cat_", "")
-                short_name = short_name.replace("Artificial surfaces (including urban and associated areas)", "Urban")
-                short_name = short_name.replace("Net Forest conversion", "Deforestasi")
-                short_name = short_name.replace("Tree-covered areas", "Hutan")
-                short_name = short_name.replace("Herbaceous crops", "Lahan_Pertanian")
-                short_name = short_name.replace("Temp_Category", "Suhu")
-                items.append(f"{short_name}={val}")
-        if items:
-            transactions.append(items)
-
-    print(f"  Transaksi dibuat: {len(transactions)}")
-
-    # One-hot encode
-    te = TransactionEncoder()
-    te_array = te.fit(transactions).transform(transactions)
-    df_onehot = pd.DataFrame(te_array, columns=te.columns_)
-
-    # Run Apriori
-    frequent = apriori(df_onehot, min_support=0.05, use_colnames=True)
-    if frequent.empty:
-        print("  Tidak ada frequent itemset ditemukan (min_support=0.05).")
-        return results
-
-    print(f"  Frequent itemsets: {len(frequent)}")
-
-    # Generate rules
-    rules = association_rules(frequent, metric="lift", min_threshold=1.0)
-    if rules.empty:
-        print("  Tidak ada association rules ditemukan.")
-        return results
-
-    # Filter for rules where consequent involves temperature
-    temp_rules = rules[
-        rules["consequents"].apply(lambda x: any("Suhu=" in str(i) for i in x))
-    ].sort_values("lift", ascending=False)
-
-    print(f"\n  Total rules: {len(rules)}")
-    print(f"  Rules terkait suhu: {len(temp_rules)}")
-
-    if not temp_rules.empty:
-        print(f"\n  Top 10 Association Rules (terkait suhu, by lift):")
-        display_cols = ["antecedents", "consequents", "support", "confidence", "lift"]
-        top_rules = temp_rules[display_cols].head(10)
-        top_rules_formatted = top_rules.copy()
-        top_rules_formatted["antecedents"] = top_rules_formatted["antecedents"].apply(
-            lambda x: ", ".join(list(x))
-        )
-        top_rules_formatted["consequents"] = top_rules_formatted["consequents"].apply(
-            lambda x: ", ".join(list(x))
-        )
-        top_rules_formatted["support"] = top_rules_formatted["support"].round(4)
-        top_rules_formatted["confidence"] = top_rules_formatted["confidence"].round(4)
-        top_rules_formatted["lift"] = top_rules_formatted["lift"].round(4)
-        print(top_rules_formatted.to_string(index=False))
-
-        # Save
-        top_rules_formatted.to_csv(artifact_path(output_dir, "association_rules_temperature.csv"), index=False)
-        results["top_rules"] = top_rules_formatted
-
-        # Visualize top rules
-        fig, ax = plt.subplots(figsize=(10, 6))
-        plot_data = top_rules_formatted.head(10).copy()
-        plot_data["rule"] = plot_data["antecedents"] + " -> " + plot_data["consequents"]
-        plot_data = plot_data.sort_values("lift")
-        colors = plt.cm.RdYlGn(plot_data["confidence"].values)
-        ax.barh(range(len(plot_data)), plot_data["lift"], color=colors)
-        ax.set_yticks(range(len(plot_data)))
-        ax.set_yticklabels(plot_data["rule"], fontsize=7)
-        ax.set_xlabel("Lift")
-        ax.set_title("Top Association Rules Terkait Anomali Suhu", fontweight="bold")
-        plt.tight_layout()
-        plt.savefig(artifact_path(output_dir, "association_rules_chart.png"))
-        plt.close()
-
-    return results
 
 
 # =============================================================================
@@ -1427,9 +1094,9 @@ def run_deep_learning_tuning(supervised, config, output_dir):
 
 
 def fit_all_models(supervised, config, tuning_summary=None):
-    """Fit and compare all 7 models."""
+    """Fit deep learning models and baseline/tabular comparators."""
     print("\n" + "=" * 70)
-    print("TEKNIK (c) + (e): DEEP LEARNING & SUPERVISED FORECASTING")
+    print("FOKUS: DEEP LEARNING, TIME SERIES & MODEL COMPARISON")
     print("=" * 70)
 
     numeric, categorical = feature_columns(supervised, config)
@@ -1838,24 +1505,15 @@ def run_pipeline(config: ModelingConfig | None = None) -> dict:
     print(f"  ASEAN rows: {supervised['is_asean'].sum()}")
     print(f"  Split: {supervised['split'].value_counts().to_dict()}")
 
-    # 5a. Clustering
-    clustering_results = run_clustering(processed, OUTPUT_DIR, config)
-
-    # 5b. Classification
-    classification_results = run_classification(supervised, config, OUTPUT_DIR)
-
-    # 5d. Association Rules
-    assoc_results = run_association_rules(processed, OUTPUT_DIR)
-
-    # 5e. Time Series Mining
+    # 5a. Time Series Mining
     ts_results = run_timeseries_mining(panel, OUTPUT_DIR)
 
-    # 5c. Deep Learning hyperparameter tuning
+    # 5b. Deep Learning hyperparameter tuning
     tuning_results, tuning_summary = run_deep_learning_tuning(
         supervised, config, OUTPUT_DIR,
     )
 
-    # 5c + 6. Deep Learning + Full Model Comparison
+    # 5c + 6. Deep Learning + baseline/tabular model comparison
     models, predictions, metrics, numeric, categorical = fit_all_models(
         supervised, config, tuning_summary,
     )
@@ -1910,12 +1568,11 @@ def run_pipeline(config: ModelingConfig | None = None) -> dict:
         "best_asean_test_mae": float(ranking.loc[0, "MAE"]) if not ranking.empty else None,
         "best_asean_test_rmse": float(ranking.loc[0, "RMSE"]) if not ranking.empty else None,
         "asean_test_samples": int(ranking.loc[0, "n"]) if not ranking.empty else None,
+        "focus": "Deep learning and time series data mining for ASEAN temperature anomaly prediction",
         "techniques_completed": [
-            "a. Clustering (K-Means, DBSCAN)",
-            "b. Klasifikasi (RF, HistGBT Classifier)",
-            "c. Deep Learning (LSTM, GRU)",
-            "d. Association Rule Mining (Apriori)",
-            "e. Time Series Mining (ADF, decomposition, forecasting)",
+            "Time Series Mining (ADF, decomposition, ACF/PACF, temporal split, scenario forecasting)",
+            "Deep Learning (LSTM, GRU)",
+            "Baseline and tabular model comparison (Naive, Mean, Ridge, Random Forest, HistGradientBoosting)",
         ],
         "report_notes": [
             "Models predict year-over-year temperature delta; level metrics are reconstructed from current-year temperature plus predicted delta.",

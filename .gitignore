@@ -6,3 +6,10 @@ venv/
 ~$*.docx
 /Format Laporan Akhir Tugas Akhir Data Mining Genap 2025-2026.docx
 /Laporan_Akhir_Data_Mining_ASEAN_Climate_LandCover.docx
+
+# Report/document artifacts kept locally, not in git history.
+*.docx
+*.pdf
+reports/
+docs/temp_laporan/
+outputs/report_render/
